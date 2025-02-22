@@ -10,6 +10,7 @@ const ProductFile: FC<IProductFile> = ({ id, aligment, products }) => {
     isChangingAligment,
     setIsChangingAligment,
     onSubmit,
+    deleteProduct,
   } = useProductFileController({
     id,
     aligment,
@@ -42,7 +43,11 @@ const ProductFile: FC<IProductFile> = ({ id, aligment, products }) => {
         className={`-c-products-file__products -c-products-file__products--${aligment}`}
       >
         {products.map((product) => (
-          <ProductCard key={product?.id} data={product} />
+          <ProductCard
+            key={product?.id}
+            data={product}
+            onDelete={deleteProduct}
+          />
         ))}
       </div>
     </div>

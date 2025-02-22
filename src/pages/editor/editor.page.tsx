@@ -4,6 +4,8 @@ import { DndProvider } from 'react-dnd';
 import ProductFile from './components/product-file/product-file.component';
 import { useEditorStore } from '../store/editor.store';
 import { IProductFile } from '../../models';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import ZoomControls from './components/zoom-controls/zoom-controls.component';
 
 const EditorPage = () => {
   const { selectableProducts, files, addFile } = useEditorStore();
@@ -11,7 +13,6 @@ const EditorPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const aligment = formData.get('aligment') as IProductFile['aligment'];
-    console.log('Submitted aligment:', aligment);
     addFile(aligment);
   };
   return (
@@ -26,12 +27,18 @@ const EditorPage = () => {
             ))}
           </div>
         </section>
+
         <section className="-c-zoom">
-          <div className="-c-zoom__content">
-            {files.map((file) => (
-              <ProductFile key={`zoom-file-${file.id}`} {...file} />
-            ))}
-          </div>
+          <TransformWrapper disabled maxScale={2} minScale={0.2}>
+            <ZoomControls />
+            <TransformComponent>
+              <div className="-c-zoom__content">
+                {files.map((file) => (
+                  <ProductFile key={`zoom-file-${file.id}`} {...file} />
+                ))}
+              </div>
+            </TransformComponent>
+          </TransformWrapper>
         </section>
         <form onSubmit={onSubmit}>
           <label htmlFor="aligment">Aligment:</label>

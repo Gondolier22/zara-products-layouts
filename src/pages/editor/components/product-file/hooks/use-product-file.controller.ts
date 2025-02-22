@@ -11,6 +11,7 @@ export const useProductFileController = (data: IProductFile) => {
     swapFiles,
     updateSelectableProducts,
     updateFileAligment,
+    deleteProduct,
   } = useEditorStore();
   const containerDropRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -63,5 +64,6 @@ export const useProductFileController = (data: IProductFile) => {
     isChangingAligment: isChangingAligmentState,
     setIsChangingAligment: () => setIsChangingAligmentState((prev) => !prev),
     onSubmit,
+    deleteProduct,
   };
 };

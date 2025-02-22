@@ -15,6 +15,7 @@ type TEditorStore = {
     fileId: string,
     aligment: IProductFile['aligment'],
   ) => void;
+  deleteProduct: (productId: string) => void;
 };
 
 export const useEditorStore = create<TEditorStore>((set) => ({
@@ -127,4 +128,11 @@ export const useEditorStore = create<TEditorStore>((set) => ({
       ),
     }));
   },
+  deleteProduct: (productId) =>
+    set((state) => ({
+      files: state.files.map((file) => ({
+        ...file,
+        products: file.products.filter((product) => product.id !== productId),
+      })),
+    })),
 }));
