@@ -1,0 +1,56 @@
+.-c-header {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+
+  &__logo {
+    height: 30px;
+    color: #343a40;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__item {
+    a {
+      text-decoration: none;
+      color: #495057;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #007bff;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    & {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__logo {
+      margin-bottom: 1rem;
+    }
+
+    &__nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__list {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+}
