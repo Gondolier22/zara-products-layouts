@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useProductFileController } from './hooks/use-product-file.controller';
 import ProductCard from '../../../../components/product-card/product-card.component';
 import { IProductFile } from '../../../../models';
+import FileManagementForm from '../file-management-form/file-management-form.component';
 
 const ProductFile: FC<IProductFile> = ({ id, aligment, products }) => {
   const {
@@ -24,15 +25,7 @@ const ProductFile: FC<IProductFile> = ({ id, aligment, products }) => {
       style={{ opacity }}
     >
       {isChangingAligment ? (
-        <form onSubmit={onSubmit}>
-          <label htmlFor="aligment">Aligment:</label>
-          <select name="aligment" id="aligment" defaultValue={aligment}>
-            <option value="left">Left</option>
-            <option value="center">Center</option>
-            <option value="right">Right</option>
-          </select>
-          <button type="submit">Save</button>
-        </form>
+        <FileManagementForm btnSubmitText="Save" onSubmit={onSubmit} />
       ) : (
         <div className="-c-products-file__title">
           <p>Aligment: {aligment}</p>

@@ -49,11 +49,7 @@ export const useProductFileController = (data: IProductFile) => {
     dragRef(containerDropRef);
   }, [dropRef, dragRef]);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const aligment = formData.get('aligment') as IProductFile['aligment'];
-    console.log('Submitted aligment:', aligment);
+  const onSubmit = (aligment: IProductFile['aligment']) => {
     updateFileAligment(data.id, aligment);
     setIsChangingAligmentState(false);
   };
