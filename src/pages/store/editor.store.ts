@@ -3,7 +3,7 @@ import { IProduct, IProductFile } from '../../models';
 import { faker } from '@faker-js/faker';
 import { generateFakeProduct } from '../editor/utils';
 
-type TEditorStore = {
+export type TEditorStore = {
   files: IProductFile[];
   selectableProducts: IProduct[];
   addProduct: (fileId: string, product: IProduct) => void;

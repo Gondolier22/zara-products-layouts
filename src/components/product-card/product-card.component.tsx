@@ -29,7 +29,6 @@ const ProductCard: FC<IProductCardProps> = ({ data, onDelete }) => {
           <p>{data?.price} €</p>
         </>
       )}
-      {!data && <p>Empty</p>}
     </article>
   );
 };
