@@ -16,7 +16,11 @@ const FileManagementForm: React.FC<TFileManagementFormProps> = ({
     onSubmit(aligment);
   };
   return (
-    <form className="-c-file-management-form" onSubmit={onSubmitHandler}>
+    <form
+      className="-c-file-management-form"
+      onSubmit={onSubmitHandler}
+      role="form"
+    >
       <label className="-c-file-management-form__label" htmlFor="aligment">
         Aligment:
       </label>

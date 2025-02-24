@@ -35,7 +35,7 @@ const ProductFile: FC<IProductFile> = ({ id, aligment, products }) => {
       <div
         className={`-c-products-file__products -c-products-file__products--${aligment}`}
       >
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductCard
             key={product?.id}
             data={product}

@@ -25,7 +25,7 @@ export const useProductFileController = (data: IProductFile) => {
         if (item.type === EDraggableItems.PRODUCT_CARD) {
           if (data.products.length >= 3) return;
           console.log('Dropped a product card:', item.data);
-          addProduct(data.id, item.data);
+          addProduct(data.id, item.data as IProduct);
           updateSelectableProducts(item.data.id);
         } else if (item.type === EDraggableItems.PRODUCT_FILE) {
           console.log('Dropped a product file:', item.data);
