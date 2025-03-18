@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { IProduct } from '../../models';
-import { useProductCardController } from './hooks/use-product-card.controller';
+import { Product } from '../../models/product-card';
+import { useProductCardController } from './hooks/use-product-card';
 
-export interface IProductCardProps {
-  data: IProduct;
+export interface ProductCardProps {
+  data: Product;
   onDelete?: (id: string) => void;
 }
 
-const ProductCard: FC<IProductCardProps> = ({ data, onDelete }) => {
+const ProductCard: FC<ProductCardProps> = ({ data, onDelete }) => {
   const { ref, opacity } = useProductCardController(data);
 
   return (

@@ -1,18 +1,18 @@
-import { IProductFile } from '../../../../models';
+import { ProductFile } from '../../../../models/product-file';
 
-type TFileManagementFormProps = {
+type FileManagementFormProps = {
   btnSubmitText: string;
-  onSubmit: (aligment: IProductFile['aligment']) => void;
+  onSubmit: (aligment: ProductFile['aligment']) => void;
 };
 
-const FileManagementForm: React.FC<TFileManagementFormProps> = ({
+const FileManagementForm: React.FC<FileManagementFormProps> = ({
   btnSubmitText,
   onSubmit,
 }) => {
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const aligment = formData.get('aligment') as IProductFile['aligment'];
+    const aligment = formData.get('aligment') as ProductFile['aligment'];
     onSubmit(aligment);
   };
   return (

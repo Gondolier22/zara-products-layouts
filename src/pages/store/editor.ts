@@ -1,24 +1,25 @@
 import { create } from 'zustand';
-import { IProduct, IProductFile } from '../../models';
+import { Product } from '../../models/product-card';
 import { faker } from '@faker-js/faker';
 import { generateFakeProduct } from '../editor/utils';
+import { ProductFile } from '../../models/product-file';
 
-export type TEditorStore = {
-  files: IProductFile[];
-  selectableProducts: IProduct[];
-  addProduct: (fileId: string, product: IProduct) => void;
-  addFile: (aligment: IProductFile['aligment']) => void;
+export type EditorStore = {
+  files: ProductFile[];
+  selectableProducts: Product[];
+  addProduct: (fileId: string, product: Product) => void;
+  addFile: (aligment: ProductFile['aligment']) => void;
   swapFiles: (currentFileId: string, dropFileId: string) => void;
   swapProducts: (currentProductId: string, dropProductId: string) => void;
-  updateSelectableProducts: (productId: IProduct['id']) => void;
+  updateSelectableProducts: (productId: Product['id']) => void;
   updateFileAligment: (
     fileId: string,
-    aligment: IProductFile['aligment'],
+    aligment: ProductFile['aligment'],
   ) => void;
   deleteProduct: (productId: string) => void;
 };
 
-export const useEditorStore = create<TEditorStore>((set) => ({
+export const useEditorStore = create<EditorStore>((set) => ({
   files: [],
   selectableProducts: Array.from({ length: 3 }, () => generateFakeProduct()),
   addProduct: (fileId, product) => {

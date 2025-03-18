@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    setupFiles: './jest-utils.js',
+    setupFiles: './jest.setup.ts',
     exclude: [
       '**/node_modules/**',
       './src/routes.tsx', // Excluir routes.tsx

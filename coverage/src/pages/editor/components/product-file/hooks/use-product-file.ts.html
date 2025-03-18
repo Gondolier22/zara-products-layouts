@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/pages/editor/components/product-file/hooks/use-product-file.controller.ts</title>
+    <title>Code coverage report for src/pages/editor/components/product-file/hooks/use-product-file.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">src/pages/editor/components/product-file/hooks</a> use-product-file.controller.ts</h1>
+        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">src/pages/editor/components/product-file/hooks</a> use-product-file.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">76.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/56</span>
+                <span class='fraction'>42/55</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">76.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/56</span>
+                <span class='fraction'>42/55</span>
             </div>
         
             
@@ -125,10 +125,7 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -149,9 +146,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -194,12 +188,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useDrag, useDrop } from 'react-dnd';
-import { EDraggableItems } from '../../../../../types';
+import { DraggableItems } from '../../../../../types/draggable-items';
 import { useEffect, useRef, useState } from 'react';
-import { useEditorStore } from '../../../../store/editor.store';
-import { IProduct, IProductFile } from '../../../../../models';
+import { useEditorStore } from '../../../../store/editor';
+import { Product, ProductFile } from '../../../../../models';
 &nbsp;
-export const useProductFileController = (data: IProductFile) =&gt; {
+export const useProductFileController = (data: ProductFile) =&gt; {
   const [isChangingAligmentState, setIsChangingAligmentState] = useState(false);
   const {
     addProduct,
@@ -212,17 +206,14 @@ export const useProductFileController = (data: IProductFile) =&gt; {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, dropRef] = useDrop(
     () =&gt; ({
-      accept: [EDraggableItems.PRODUCT_CARD, EDraggableItems.PRODUCT_FILE],
-      drop: <span class="fstat-no" title="function not covered" >(item: {</span>
-        type: EDraggableItems;
-        data: IProduct | IProductFile;
-<span class="cstat-no" title="statement not covered" >      }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (item.type === EDraggableItems.PRODUCT_CARD) {</span>
+      accept: [DraggableItems.PRODUCT_CARD, DraggableItems.PRODUCT_FILE],
+      drop: <span class="fstat-no" title="function not covered" >(item: { type: DraggableItems; data: Product | ProductFile }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (item.type === DraggableItems.PRODUCT_CARD) {</span>
 <span class="cstat-no" title="statement not covered" >          if (data.products.length &gt;= 3) return;</span>
 <span class="cstat-no" title="statement not covered" >          console.log('Dropped a product card:', item.data);</span>
-<span class="cstat-no" title="statement not covered" >          addProduct(data.id, item.data as IProduct);</span>
+<span class="cstat-no" title="statement not covered" >          addProduct(data.id, item.data as Product);</span>
 <span class="cstat-no" title="statement not covered" >          updateSelectableProducts(item.data.id);</span>
-<span class="cstat-no" title="statement not covered" >        } else if (item.type === EDraggableItems.PRODUCT_FILE) {</span>
+<span class="cstat-no" title="statement not covered" >        } else if (item.type === DraggableItems.PRODUCT_FILE) {</span>
 <span class="cstat-no" title="statement not covered" >          console.log('Dropped a product file:', item.data);</span>
 <span class="cstat-no" title="statement not covered" >          swapFiles(data.id, item.data.id);</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
@@ -232,8 +223,8 @@ export const useProductFileController = (data: IProductFile) =&gt; {
   );
 &nbsp;
   const [{ opacity }, dragRef] = useDrag(() =&gt; ({
-    type: EDraggableItems.PRODUCT_FILE,
-    item: { type: EDraggableItems.PRODUCT_FILE, data },
+    type: DraggableItems.PRODUCT_FILE,
+    item: { type: DraggableItems.PRODUCT_FILE, data },
     collect: (monitor) =&gt; ({
       opacity: monitor.isDragging(<span class="branch-0 cbranch-no" title="branch not covered" >) ? 0.5 : 1</span>,
     }),
@@ -244,7 +235,7 @@ export const useProductFileController = (data: IProductFile) =&gt; {
     dragRef(containerDropRef);
   }, [dropRef, dragRef]);
 &nbsp;
-  const onSubmit = <span class="fstat-no" title="function not covered" >(aligment: IProductFile['aligment']) =&gt; {</span>
+  const onSubmit = <span class="fstat-no" title="function not covered" >(aligment: ProductFile['aligment']) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    updateFileAligment(data.id, aligment);</span>
 <span class="cstat-no" title="statement not covered" >    setIsChangingAligmentState(false);</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
@@ -265,7 +256,7 @@ export const useProductFileController = (data: IProductFile) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-02-25T07:43:17.179Z
+                at 2025-03-18T21:01:16.033Z
             </div>
         <script src="../../../../../../prettify.js"></script>
         <script>

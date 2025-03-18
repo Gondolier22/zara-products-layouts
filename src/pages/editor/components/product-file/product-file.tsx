@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { useProductFileController } from './hooks/use-product-file.controller';
-import ProductCard from '../../../../components/product-card/product-card.component';
-import { IProductFile } from '../../../../models';
+import { useProductFileController } from './hooks/use-product-file';
+import ProductCard from '../../../../components/product-card/product-card';
+import { ProductFile as ProductFileModel } from '../../../../models/product-file';
 import FileManagementForm from '../file-management-form/file-management-form.component';
 
-const ProductFile: FC<IProductFile> = ({ id, aligment, products }) => {
+const ProductFile: FC<ProductFileModel> = ({ id, aligment, products }) => {
   const {
     containerDropRef,
     opacity,

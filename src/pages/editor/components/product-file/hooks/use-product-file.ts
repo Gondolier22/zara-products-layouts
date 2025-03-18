@@ -1,10 +1,11 @@
 import { useDrag, useDrop } from 'react-dnd';
-import { EDraggableItems } from '../../../../../types';
+import { DraggableItems } from '../../../../../types/draggable-items';
 import { useEffect, useRef, useState } from 'react';
-import { useEditorStore } from '../../../../store/editor.store';
-import { IProduct, IProductFile } from '../../../../../models';
+import { useEditorStore } from '../../../../store/editor';
+import { ProductFile } from '../../../../../models/product-file';
+import { Product } from '../../../../../models/product-card';
 
-export const useProductFileController = (data: IProductFile) => {
+export const useProductFileController = (data: ProductFile) => {
   const [isChangingAligmentState, setIsChangingAligmentState] = useState(false);
   const {
     addProduct,
@@ -17,17 +18,14 @@ export const useProductFileController = (data: IProductFile) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, dropRef] = useDrop(
     () => ({
-      accept: [EDraggableItems.PRODUCT_CARD, EDraggableItems.PRODUCT_FILE],
-      drop: (item: {
-        type: EDraggableItems;
-        data: IProduct | IProductFile;
-      }) => {
-        if (item.type === EDraggableItems.PRODUCT_CARD) {
+      accept: [DraggableItems.PRODUCT_CARD, DraggableItems.PRODUCT_FILE],
+      drop: (item: { type: DraggableItems; data: Product | ProductFile }) => {
+        if (item.type === DraggableItems.PRODUCT_CARD) {
           if (data.products.length >= 3) return;
           console.log('Dropped a product card:', item.data);
-          addProduct(data.id, item.data as IProduct);
+          addProduct(data.id, item.data as Product);
           updateSelectableProducts(item.data.id);
-        } else if (item.type === EDraggableItems.PRODUCT_FILE) {
+        } else if (item.type === DraggableItems.PRODUCT_FILE) {
           console.log('Dropped a product file:', item.data);
           swapFiles(data.id, item.data.id);
         }
@@ -37,8 +35,8 @@ export const useProductFileController = (data: IProductFile) => {
   );
 
   const [{ opacity }, dragRef] = useDrag(() => ({
-    type: EDraggableItems.PRODUCT_FILE,
-    item: { type: EDraggableItems.PRODUCT_FILE, data },
+    type: DraggableItems.PRODUCT_FILE,
+    item: { type: DraggableItems.PRODUCT_FILE, data },
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,
     }),
@@ -49,7 +47,7 @@ export const useProductFileController = (data: IProductFile) => {
     dragRef(containerDropRef);
   }, [dropRef, dragRef]);
 
-  const onSubmit = (aligment: IProductFile['aligment']) => {
+  const onSubmit = (aligment: ProductFile['aligment']) => {
     updateFileAligment(data.id, aligment);
     setIsChangingAligmentState(false);
   };

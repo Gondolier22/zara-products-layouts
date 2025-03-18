@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import EditorPage from '../editor.page';
-import { useEditorStore } from '../../store/editor.store';
+import { describe, it, expect, vi, Mock } from 'vitest';
+import EditorPage from '../editor';
+import { useEditorStore } from '../../store/editor';
 
-vi.mock('../../store/editor.store');
+vi.mock('../../store/editor', () => ({
+  useEditorStore: vi.fn(),
+}));
 
-const mockedUseEditorStore = useEditorStore as jest.MockedFunction<
+const mockedUseEditorStore = useEditorStore as unknown as Mock<
   typeof useEditorStore
 >;
 

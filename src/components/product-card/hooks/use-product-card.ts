@@ -1,16 +1,16 @@
 import { useDrag, useDrop } from 'react-dnd';
-import { EDraggableItems } from '../../../types';
+import { DraggableItems } from '../../../types/draggable-items';
 import { useRef } from 'react';
-import { IProduct } from '../../../models';
-import { useEditorStore } from '../../../pages/store/editor.store';
+import { Product } from '../../../models/product-card';
+import { useEditorStore } from '../../../pages/store/editor';
 
-export const useProductCardController = (data: IProduct) => {
+export const useProductCardController = (data: Product) => {
   const { swapProducts } = useEditorStore();
   const ref = useRef<HTMLElement>(null);
   const [{ opacity }, dragRef] = useDrag(
     () => ({
-      type: EDraggableItems.PRODUCT_CARD,
-      item: { data, type: EDraggableItems.PRODUCT_CARD },
+      type: DraggableItems.PRODUCT_CARD,
+      item: { data, type: DraggableItems.PRODUCT_CARD },
       canDrag: () => !!data,
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.5 : 1,
@@ -22,8 +22,8 @@ export const useProductCardController = (data: IProduct) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, dropRef] = useDrop(
     () => ({
-      accept: EDraggableItems.PRODUCT_CARD,
-      drop: (item: { data: IProduct; type: EDraggableItems }) => {
+      accept: DraggableItems.PRODUCT_CARD,
+      drop: (item: { data: Product; type: DraggableItems }) => {
         console.log('Dropped a product card:', data.id, item);
         swapProducts(data.id, item.data.id);
       },

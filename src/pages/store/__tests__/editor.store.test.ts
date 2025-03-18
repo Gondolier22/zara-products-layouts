@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { useEditorStore } from '../editor.store';
-import { IProduct } from '../../../models';
+import { useEditorStore } from '../editor';
+import { Product } from '../../../models/product-card';
 
 describe('useEditorStore', () => {
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('useEditorStore', () => {
   });
 
   it('should add a product to a file', () => {
-    const product: IProduct = {
+    const product: Product = {
       id: '1',
       name: 'Product 1',
       image: 'image1.jpg',
@@ -43,13 +43,13 @@ describe('useEditorStore', () => {
   });
 
   it('should swap products between files', () => {
-    const product1: IProduct = {
+    const product1: Product = {
       id: '1',
       name: 'Product 1',
       image: 'image1.jpg',
       price: 10,
     };
-    const product2: IProduct = {
+    const product2: Product = {
       id: '2',
       name: 'Product 2',
       image: 'image2.jpg',
@@ -67,7 +67,7 @@ describe('useEditorStore', () => {
   });
 
   it('should update selectable products', () => {
-    const product: IProduct = {
+    const product: Product = {
       id: '1',
       name: 'Product 1',
       image: 'image1.jpg',
@@ -89,7 +89,7 @@ describe('useEditorStore', () => {
   });
 
   it('should delete a product from a file', () => {
-    const product: IProduct = {
+    const product: Product = {
       id: '1',
       name: 'Product 1',
       image: 'image1.jpg',

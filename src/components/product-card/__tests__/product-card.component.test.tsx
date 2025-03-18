@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ProductCard, { IProductCardProps } from '../product-card.component';
+import ProductCard, { ProductCardProps } from '../product-card';
 import { vi } from 'vitest';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
-const mockProduct: IProductCardProps['data'] = {
+const mockProduct: ProductCardProps['data'] = {
   id: '1',
   name: 'Test Product',
   image: 'test-image.jpg',

@@ -1,3 +1,3 @@
-export enum EPATHS {
+export enum PATHS {
   EDITOR_PAGE = '/',
 }

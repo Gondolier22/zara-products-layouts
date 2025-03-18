@@ -1,10 +1,10 @@
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import ProductCard from '../../components/product-card/product-card.component';
+import ProductCard from '../../components/product-card/product-card';
 import { DndProvider } from 'react-dnd';
-import ProductFile from './components/product-file/product-file.component';
-import { useEditorStore } from '../store/editor.store';
+import ProductFile from './components/product-file/product-file';
+import { useEditorStore } from '../store/editor';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
-import ZoomControls from './components/zoom-controls/zoom-controls.component';
+import ZoomControls from './components/zoom-controls/zoom-controls';
 import FileManagementForm from './components/file-management-form/file-management-form.component';
 
 const EditorPage = () => {
