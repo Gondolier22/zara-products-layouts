@@ -1,8 +1,8 @@
-.-c-selectable-products__title {
+.c-selectable-products__title {
   text-align: center;
 }
 
-.-c-selectable-products__container {
+.c-selectable-products__container {
   display: flex;
   justify-content: center;
   gap: 20px;

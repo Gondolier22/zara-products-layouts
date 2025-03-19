@@ -1,4 +1,4 @@
-.-c-products-file {
+.c-products-file {
   width: 95%;
   min-height: 300px;
   border: 1px solid #e5e5e5;
@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.-c-products-file__title {
+.c-products-file__title {
   display: flex;
   gap: 0.5rem;
   font-size: 1.5rem;
@@ -17,11 +17,11 @@
   margin-bottom: 1rem;
 }
 
-.-c-products-file__title > p {
+.c-products-file__title > p {
   margin: 0;
 }
 
-.-c-products-file__title button {
+.c-products-file__title button {
   background-color: #f5f5f5;
   border: none;
   border-radius: 5px;
@@ -30,25 +30,39 @@
   transition: all 0.3s;
 }
 
-.-c-products-file__title button:hover {
+.c-products-file__title button:hover {
   background-color: #e5e5e5;
 }
 
-.-c-products-file__products {
+.c-products-file__products {
   width: 100%;
   display: flex;
   gap: 2rem;
   margin: 10px 0;
 }
 
-.-c-products-file__products--left {
+.c-products-file__products--left {
   justify-content: flex-start;
 }
 
-.-c-products-file__products--center {
+.c-products-file__products--center {
   justify-content: center;
 }
 
-.-c-products-file__products--right {
+.c-products-file__products--right {
   justify-content: flex-end;
+}
+
+.c-product-file__delete {
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 5px;
+  right: 25px;
 }

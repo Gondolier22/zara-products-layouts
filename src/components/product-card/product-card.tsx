@@ -1,29 +1,46 @@
+import { Product } from '@/models/product-card';
 import { FC } from 'react';
-import { Product } from '../../models/product-card';
 import { useProductCardController } from './hooks/use-product-card';
 
 export interface ProductCardProps {
   data: Product;
   onDelete?: (id: string) => void;
+  isCheckable?: boolean;
+  isChecked?: boolean;
+  onCheck?: (id: string) => void;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ data, onDelete }) => {
+export const ProductCard: FC<ProductCardProps> = ({
+  data,
+  onDelete,
+  isCheckable,
+  isChecked,
+  onCheck,
+}) => {
   const { ref, opacity } = useProductCardController(data);
 
   return (
-    <article ref={ref} className="-c-product-card" style={{ opacity }}>
+    <article ref={ref} className="c-product-card" style={{ opacity }}>
       {data && (
         <>
-          {onDelete && (
+          {onDelete && !isCheckable && (
             <button
-              className="-c-product-card__delete"
+              className="c-product-card__delete"
               onClick={() => onDelete(data.id)}
             >
               X
             </button>
           )}
-          <img src={data.image} alt={data.name} />
-          <h2 title={data.name} className="-c-product-card__title">
+          {isCheckable && (
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={() => onCheck?.(data.id)}
+              className="c-product-card__checkbox"
+            />
+          )}
+          <img src={data.image} alt={data.name} loading="lazy" />
+          <h2 title={data.name} className="c-product-card__title">
             {data?.name}
           </h2>
           <p>{data?.price} €</p>
@@ -32,5 +49,3 @@ const ProductCard: FC<ProductCardProps> = ({ data, onDelete }) => {
     </article>
   );
 };
-
-export default ProductCard;

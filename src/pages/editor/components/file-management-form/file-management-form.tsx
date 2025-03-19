@@ -1,14 +1,18 @@
-import { ProductFile } from '../../../../models/product-file';
+import { ProductFile } from '@/models/product-file';
+import { useEditorStore } from '@/store/editor';
 
 type FileManagementFormProps = {
   btnSubmitText: string;
+  mode?: 'edit' | 'create';
   onSubmit: (aligment: ProductFile['aligment']) => void;
 };
 
 export const FileManagementForm: React.FC<FileManagementFormProps> = ({
+  mode = 'create',
   btnSubmitText,
   onSubmit,
 }) => {
+  const { selectableProducts } = useEditorStore();
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,15 +21,15 @@ export const FileManagementForm: React.FC<FileManagementFormProps> = ({
   };
   return (
     <form
-      className="-c-file-management-form"
+      className="c-file-management-form"
       onSubmit={onSubmitHandler}
       role="form"
     >
-      <label className="-c-file-management-form__label" htmlFor="aligment">
+      <label className="c-file-management-form__label" htmlFor="aligment">
         Aligment:
       </label>
       <select
-        className="-c-file-management-form__select"
+        className="c-file-management-form__select"
         name="aligment"
         id="aligment"
       >
@@ -33,7 +37,13 @@ export const FileManagementForm: React.FC<FileManagementFormProps> = ({
         <option value="center">Center</option>
         <option value="right">Right</option>
       </select>
-      <button className="-c-file-management-form__button" type="submit">
+      <button
+        disabled={
+          mode === 'create' && selectableProducts.every((pro) => !pro.isChecked)
+        }
+        className="c-file-management-form__button"
+        type="submit"
+      >
         {btnSubmitText}
       </button>
     </form>

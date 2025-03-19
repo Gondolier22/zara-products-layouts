@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
-import { Product } from '../../../models/product-card';
+
+import { Product } from '@/models/product-card';
 
 export const generateFakeProduct = (): Product => ({
   id: faker.string.uuid(),

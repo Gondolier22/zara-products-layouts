@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useEditorStore } from '../editor';
-import { Product } from '../../../models/product-card';
+import { Product } from '@/models/product-card';
 
 describe('useEditorStore', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('useEditorStore', () => {
   });
 
   it('should add a file', () => {
-    useEditorStore.getState().addFile('center');
+    useEditorStore.getState().addFile('center', []);
     const files = useEditorStore.getState().files;
     expect(files).toHaveLength(1);
     expect(files[0].aligment).toBe('center');
@@ -24,7 +24,7 @@ describe('useEditorStore', () => {
       image: 'image1.jpg',
       price: 10,
     };
-    useEditorStore.getState().addFile('center');
+    useEditorStore.getState().addFile('center', []);
     const fileId = useEditorStore.getState().files[0].id;
     useEditorStore.getState().addProduct(fileId, product);
     const files = useEditorStore.getState().files;
@@ -33,8 +33,8 @@ describe('useEditorStore', () => {
   });
 
   it('should swap files', () => {
-    useEditorStore.getState().addFile('center');
-    useEditorStore.getState().addFile('left');
+    useEditorStore.getState().addFile('center', []);
+    useEditorStore.getState().addFile('left', []);
     const [file1, file2] = useEditorStore.getState().files;
     useEditorStore.getState().swapFiles(file1.id, file2.id);
     const files = useEditorStore.getState().files;
@@ -55,8 +55,8 @@ describe('useEditorStore', () => {
       image: 'image2.jpg',
       price: 20,
     };
-    useEditorStore.getState().addFile('center');
-    useEditorStore.getState().addFile('left');
+    useEditorStore.getState().addFile('center', []);
+    useEditorStore.getState().addFile('left', []);
     const [file1, file2] = useEditorStore.getState().files;
     useEditorStore.getState().addProduct(file1.id, product1);
     useEditorStore.getState().addProduct(file2.id, product2);
@@ -73,15 +73,17 @@ describe('useEditorStore', () => {
       image: 'image1.jpg',
       price: 10,
     };
-    useEditorStore.setState({ selectableProducts: [product] });
-    useEditorStore.getState().updateSelectableProducts(product.id);
+    useEditorStore.setState({
+      selectableProducts: [{ ...product, isChecked: false }],
+    });
+    useEditorStore.getState().updateSelectableProducts([product.id]);
     const selectableProducts = useEditorStore.getState().selectableProducts;
     expect(selectableProducts).toHaveLength(3);
     expect(selectableProducts.some((p) => p.id === product.id)).toBe(false);
   });
 
   it('should update file alignment', () => {
-    useEditorStore.getState().addFile('center');
+    useEditorStore.getState().addFile('center', []);
     const fileId = useEditorStore.getState().files[0].id;
     useEditorStore.getState().updateFileAligment(fileId, 'left');
     const files = useEditorStore.getState().files;
@@ -95,11 +97,38 @@ describe('useEditorStore', () => {
       image: 'image1.jpg',
       price: 10,
     };
-    useEditorStore.getState().addFile('center');
+    useEditorStore.getState().addFile('center', []);
     const fileId = useEditorStore.getState().files[0].id;
     useEditorStore.getState().addProduct(fileId, product);
     useEditorStore.getState().deleteProduct(product.id);
     const files = useEditorStore.getState().files;
     expect(files[0].products).toHaveLength(0);
+  });
+
+  it('should toggle isChecked for a selectable product', () => {
+    const product: Product = {
+      id: '1',
+      name: 'Product 1',
+      image: 'image1.jpg',
+      price: 10,
+    };
+    useEditorStore.setState({
+      selectableProducts: [{ ...product, isChecked: false }],
+    });
+    useEditorStore.getState().onCheckProduct(product.id);
+    let selectableProducts = useEditorStore.getState().selectableProducts;
+    expect(selectableProducts[0].isChecked).toBe(true);
+
+    useEditorStore.getState().onCheckProduct(product.id);
+    selectableProducts = useEditorStore.getState().selectableProducts;
+    expect(selectableProducts[0].isChecked).toBe(false);
+  });
+
+  it('should delete a file', () => {
+    useEditorStore.getState().addFile('center', []);
+    const fileId = useEditorStore.getState().files[0].id;
+    useEditorStore.getState().deleteFile(fileId);
+    const files = useEditorStore.getState().files;
+    expect(files).toHaveLength(0);
   });
 });

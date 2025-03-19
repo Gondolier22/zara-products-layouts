@@ -1,27 +1,37 @@
 import { create } from 'zustand';
-import { Product } from '../../models/product-card';
 import { faker } from '@faker-js/faker';
-import { generateFakeProduct } from '../editor/utils/generate-fake-products';
-import { ProductFile } from '../../models/product-file';
+import { Product } from '@/models/product-card';
+import { ProductFile } from '@/models/product-file';
+import { generateFakeProduct } from '@/pages/editor/utils/generate-fake-products';
+
+interface SelectableProducts extends Product {
+  isChecked: boolean;
+}
 
 export type EditorStore = {
   files: ProductFile[];
-  selectableProducts: Product[];
+  selectableProducts: SelectableProducts[];
   addProduct: (fileId: string, product: Product) => void;
-  addFile: (aligment: ProductFile['aligment']) => void;
+  addFile: (aligment: ProductFile['aligment'], products: Product[]) => void;
   swapFiles: (currentFileId: string, dropFileId: string) => void;
   swapProducts: (currentProductId: string, dropProductId: string) => void;
-  updateSelectableProducts: (productId: Product['id']) => void;
+  updateSelectableProducts: (productsIds: Product['id'][]) => void;
   updateFileAligment: (
     fileId: string,
     aligment: ProductFile['aligment'],
   ) => void;
   deleteProduct: (productId: string) => void;
+  onCheckProduct: (productId: string) => void;
+  deleteFile: (fileId: string) => void;
 };
 
 export const useEditorStore = create<EditorStore>((set) => ({
   files: [],
-  selectableProducts: Array.from({ length: 3 }, () => generateFakeProduct()),
+  selectableProducts: Array.from({ length: 3 }, () =>
+    generateFakeProduct(),
+  ).map(
+    (product) => ({ ...product, isChecked: false }), // Add the isChecked property
+  ),
   addProduct: (fileId, product) => {
     set((state) => {
       const updatedFiles = state.files.map((file) => {
@@ -41,12 +51,9 @@ export const useEditorStore = create<EditorStore>((set) => ({
       return { files: updatedFiles };
     });
   },
-  addFile: (aligment) =>
+  addFile: (aligment, products: Product[]) =>
     set((state) => ({
-      files: [
-        ...state.files,
-        { id: faker.string.uuid(), aligment, products: [] },
-      ],
+      files: [...state.files, { id: faker.string.uuid(), aligment, products }],
     })),
   swapFiles: (currentFileId, dropFileId) => {
     set((state) => {
@@ -109,15 +116,15 @@ export const useEditorStore = create<EditorStore>((set) => ({
       return { files };
     });
   },
-  updateSelectableProducts: (productId) => {
+  updateSelectableProducts: (productsIds) => {
     set((state) => {
       const selectableProducts = state.selectableProducts.filter(
-        (product) => product.id !== productId,
+        (product) => !productsIds.includes(product.id),
       );
       if (selectableProducts.length >= 3) return { selectableProducts };
       const fakeProducts = Array.from(
         { length: 3 - selectableProducts.length },
-        generateFakeProduct,
+        () => ({ ...generateFakeProduct(), isChecked: false }),
       );
       return { selectableProducts: [...selectableProducts, ...fakeProducts] };
     });
@@ -135,5 +142,18 @@ export const useEditorStore = create<EditorStore>((set) => ({
         ...file,
         products: file.products.filter((product) => product.id !== productId),
       })),
+    })),
+  onCheckProduct: (productId) => {
+    set((state) => ({
+      selectableProducts: state.selectableProducts.map((product) => ({
+        ...product,
+        isChecked:
+          product.id === productId ? !product.isChecked : product.isChecked,
+      })),
+    }));
+  },
+  deleteFile: (fileId) =>
+    set((state) => ({
+      files: state.files.filter((file) => file.id !== fileId),
     })),
 }));

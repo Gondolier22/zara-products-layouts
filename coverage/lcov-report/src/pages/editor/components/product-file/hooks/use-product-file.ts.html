@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.81% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>45/55</span>
+                <span class='fraction'>52/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.81% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>45/55</span>
+                <span class='fraction'>52/60</span>
             </div>
         
             
@@ -126,14 +126,23 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -148,8 +157,6 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -176,6 +183,12 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -189,12 +202,14 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useDrag, useDrop } from 'react-dnd';
-import { DraggableItems } from '../../../../../types/draggable-items';
-import { useEffect, useRef, useState } from 'react';
-import { useEditorStore } from '../../../../store/editor';
-import { ProductFile } from '../../../../../models/product-file';
-import { Product } from '../../../../../models/product-card';
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useRef, useState } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+&nbsp;
+import { Product } from '@/models/product-card';
+import { ProductFile } from '@/models/product-file';
+import { DraggableItems } from '@/types/draggable-items';
+import { useEditorStore } from '@/store/editor';
 &nbsp;
 export const useProductFileController = (data: ProductFile) =&gt; {
   const [isChangingAligmentState, setIsChangingAligmentState] = useState(false);
@@ -204,6 +219,7 @@ export const useProductFileController = (data: ProductFile) =&gt; {
     updateSelectableProducts,
     updateFileAligment,
     deleteProduct,
+    deleteFile,
   } = useEditorStore();
   const containerDropRef = useRef&lt;HTMLDivElement&gt;(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -213,11 +229,9 @@ export const useProductFileController = (data: ProductFile) =&gt; {
       drop: <span class="fstat-no" title="function not covered" >(item: { type: DraggableItems; data: Product | ProductFile }) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        if (item.type === DraggableItems.PRODUCT_CARD) {</span>
 <span class="cstat-no" title="statement not covered" >          if (data.products.length &gt;= 3) return;</span>
-<span class="cstat-no" title="statement not covered" >          console.log('Dropped a product card:', item.data);</span>
 <span class="cstat-no" title="statement not covered" >          addProduct(data.id, item.data as Product);</span>
-<span class="cstat-no" title="statement not covered" >          updateSelectableProducts(item.data.id);</span>
+<span class="cstat-no" title="statement not covered" >          updateSelectableProducts([item.data.id]);</span>
 <span class="cstat-no" title="statement not covered" >        } else if (item.type === DraggableItems.PRODUCT_FILE) {</span>
-<span class="cstat-no" title="statement not covered" >          console.log('Dropped a product file:', item.data);</span>
 <span class="cstat-no" title="statement not covered" >          swapFiles(data.id, item.data.id);</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
 <span class="cstat-no" title="statement not covered" >      },</span>
@@ -238,6 +252,12 @@ export const useProductFileController = (data: ProductFile) =&gt; {
     dragRef(containerDropRef);
   }, [dropRef, dragRef]);
 &nbsp;
+  useEffect(() =&gt; {
+    if (data.products.length === 0) {
+      deleteFile(data.id);
+    }
+  }, [data.products, deleteFile, data.id]);
+&nbsp;
   const onSubmit = (aligment: ProductFile['aligment']) =&gt; {
     updateFileAligment(data.id, aligment);
     setIsChangingAligmentState(false);
@@ -250,6 +270,7 @@ export const useProductFileController = (data: ProductFile) =&gt; {
     setIsChangingAligment: () =&gt; setIsChangingAligmentState((prev) =&gt; !prev),
     onSubmit,
     deleteProduct,
+    deleteFile: <span class="fstat-no" title="function not covered" >() =&gt; deleteFile(data.id),</span>
   };
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -259,7 +280,7 @@ export const useProductFileController = (data: ProductFile) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-19T08:04:49.004Z
+                at 2025-03-19T16:21:17.278Z
             </div>
         <script src="../../../../../../prettify.js"></script>
         <script>
