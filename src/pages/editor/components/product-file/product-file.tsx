@@ -2,9 +2,13 @@ import { FC } from 'react';
 import { useProductFileController } from './hooks/use-product-file';
 import ProductCard from '../../../../components/product-card/product-card';
 import { ProductFile as ProductFileModel } from '../../../../models/product-file';
-import FileManagementForm from '../file-management-form/file-management-form.component';
+import { FileManagementForm } from '../file-management-form/file-management-form';
 
-const ProductFile: FC<ProductFileModel> = ({ id, aligment, products }) => {
+export const ProductFile: FC<ProductFileModel> = ({
+  id,
+  aligment,
+  products,
+}) => {
   const {
     containerDropRef,
     opacity,
@@ -46,5 +50,3 @@ const ProductFile: FC<ProductFileModel> = ({ id, aligment, products }) => {
     </div>
   );
 };
-
-export default ProductFile;

@@ -5,7 +5,7 @@ type FileManagementFormProps = {
   onSubmit: (aligment: ProductFile['aligment']) => void;
 };
 
-const FileManagementForm: React.FC<FileManagementFormProps> = ({
+export const FileManagementForm: React.FC<FileManagementFormProps> = ({
   btnSubmitText,
   onSubmit,
 }) => {
@@ -39,5 +39,3 @@ const FileManagementForm: React.FC<FileManagementFormProps> = ({
     </form>
   );
 };
-
-export default FileManagementForm;

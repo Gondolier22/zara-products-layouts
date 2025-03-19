@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { Product } from '../../models/product-card';
 import { faker } from '@faker-js/faker';
-import { generateFakeProduct } from '../editor/utils';
+import { generateFakeProduct } from '../editor/utils/generate-fake-products';
 import { ProductFile } from '../../models/product-file';
 
 export type EditorStore = {
