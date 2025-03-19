@@ -1,102 +1,176 @@
 # Zara Products Layouts
 
-## Purpose
+## Tabla de Contenidos
 
-The purpose of this application is to provide a user-friendly interface for managing and organizing product layouts for Zara. Users can drag and drop product cards to create custom layouts, making it easier to visualize and manage product displays.
+- [Zara Products Layouts](#zara-products-layouts)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Descripción](#descripción)
+  - [Estructura del Proyecto](#estructura-del-proyecto)
+  - [Tecnologías Usadas](#tecnologías-usadas)
+    - [React](#react)
+      - [Beneficios de React](#beneficios-de-react)
+    - [TypeScript](#typescript)
+      - [Beneficios de TypeScript](#beneficios-de-typescript)
+    - [Vite](#vite)
+      - [Beneficios de Vite](#beneficios-de-vite)
+    - [ESLint](#eslint)
+      - [Beneficios de ESLint](#beneficios-de-eslint)
+    - [Prettier](#prettier)
+      - [Beneficios de Prettier](#beneficios-de-prettier)
+    - [Faker](#faker)
+      - [Beneficios de Faker](#beneficios-de-faker)
+    - [Vitest](#vitest)
+      - [Beneficios de Vitest](#beneficios-de-vitest)
+    - [React Testing Library](#react-testing-library)
+      - [Beneficios de React Testing Library](#beneficios-de-react-testing-library)
+  - [Instalación](#instalación)
+  - [Contribuciones](#contribuciones)
+  - [Licencia](#licencia)
 
-## File Structure
+## Descripción
 
-The project is organized as follows:
+Zara Products Layouts es una aplicación web que permite a los usuarios gestionar y organizar diseños de productos de manera intuitiva. Los usuarios pueden arrastrar y soltar tarjetas de productos para crear diseños personalizados, facilitando la visualización y administración de las exhibiciones de productos.
 
-```
-/c:/WebApps/zara-products-layouts/
-├── public/                     # Public assets
-├── src/                        # Source code
-│   ├── components/             # Reusable components
-│   │   ├── product-card/       # Product card component
-│   │   │   ├── hooks/          # Hooks for product card
-│   │   │   └── product-card.component.tsx
-│   ├── pages/                  # Application pages
-│   │   ├── editor/             # Editor page
-│   │   │   ├── components/     # Components specific to the editor page
+## Estructura del Proyecto
+
+```plain-text
+zara-products-layouts
+├── public/                     # Recursos públicos
+├── src/                        # Código fuente
+│   ├── components/             # Componentes reutilizables
+│   │   ├── product-card/       # Componente de tarjeta de producto
+│   │   │   ├── hooks/          # Hooks para la tarjeta de producto
+│   │   │   └── product-card.tsx
+│   ├── pages/                  # Páginas de la aplicación
+│   │   ├── editor/             # Página del editor
+│   │   │   ├── components/     # Componentes específicos de la página del editor
 │   │   │   │   └── file-management-form/
-│   │   │   │       ├── file-management-form.component.tsx
-│   │   │   │       └── file-management-form.component.scss
-│   │   │   ├── hooks/          # Hooks for the editor page
-│   │   │   │   └── use-editor-page.controller.ts
-│   │   │   └── editor.page.tsx
-│   ├── styles/                 # Global styles
-│   │   └── components/         # Component-specific styles
-│   │       ├── product-card.component.scss
-│   │       └── files-magement-form.component.scss
-│   ├── models/                 # TypeScript models
-│   ├── store/                  # State management
-│   └── utils/                  # Utility functions
-├── .eslintrc.js                # ESLint configuration
-├── .prettierrc                 # Prettier configuration
-├── package.json                # Project dependencies and scripts
-├── tsconfig.json               # TypeScript configuration
-└── vite.config.ts              # Vite configuration
+│   │   │   │       └── file-management-form.tsx
+│   │   │   ├── hooks/          # Hooks para la página del editor
+│   │   │   │   └── use-editor-page.ts
+│   │   │   └── editor.tsx
+│   ├── styles/                 # Estilos globales
+│   ├── models/                 # Modelos TypeScript
+│   ├── store/                  # Gestión de estado
+│   └── utils/                  # Funciones utilitarias
+├── .eslintrc.js                # Configuración de ESLint
+├── .prettierrc                 # Configuración de Prettier
+├── package.json                # Dependencias y scripts del proyecto
+├── tsconfig.json               # Configuración de TypeScript
+└── vite.config.ts              # Configuración de Vite
 ```
 
-## Installation
+## Tecnologías Usadas
 
-To install and run the application locally, follow these steps:
+### React
 
-1. **Clone the repository:**
+Biblioteca para construir interfaces de usuario.
 
-   ```sh
+#### Beneficios de React
+
+- **Componentización**: Permite dividir la interfaz en componentes reutilizables, facilitando el mantenimiento y escalabilidad del código.
+- **Virtual DOM**: Mejora el rendimiento al actualizar solo las partes necesarias de la interfaz.
+- **Ecosistema Amplio**: Ofrece una gran cantidad de bibliotecas y herramientas para extender sus capacidades.
+
+### TypeScript
+
+Lenguaje de programación que extiende JavaScript con tipos estáticos.
+
+#### Beneficios de TypeScript
+
+- **Detección de Errores**: Identifica errores en tiempo de desarrollo, reduciendo problemas en producción.
+- **Autocompletado Mejorado**: Proporciona sugerencias más precisas en los editores de código.
+- **Refactorización Segura**: Facilita la modificación del código sin introducir errores.
+
+### Vite
+
+Herramienta de desarrollo rápida y ligera para proyectos frontend.
+
+#### Beneficios de Vite
+
+- **Inicio Rápido**: Carga instantánea del proyecto gracias a su servidor de desarrollo optimizado.
+- **Hot Module Replacement (HMR)**: Permite actualizaciones en tiempo real sin recargar la página.
+- **Compilación Optimizada**: Genera builds más rápidas y eficientes.
+
+### ESLint
+
+Herramienta para identificar y reportar patrones en el código JavaScript.
+
+#### Beneficios de ESLint
+
+- **Código Consistente**: Ayuda a mantener un estilo uniforme en el equipo de desarrollo.
+- **Prevención de Errores**: Detecta malas prácticas y posibles errores en el código.
+- **Configuración Personalizable**: Permite adaptar las reglas a las necesidades del proyecto.
+
+### Prettier
+
+Formateador de código para mantener un estilo consistente.
+
+#### Beneficios de Prettier
+
+- **Formato Automático**: Asegura que todo el código siga un formato estándar.
+- **Ahorro de Tiempo**: Reduce el tiempo dedicado a revisar y corregir estilos de código.
+- **Integración con Editores**: Se integra fácilmente con herramientas como VS Code para formatear automáticamente al guardar.
+
+### Faker
+
+Biblioteca para generar datos falsos para pruebas y desarrollo.
+
+#### Beneficios de Faker
+
+- **Generación de Datos Realistas**: Permite crear datos de prueba realistas como nombres, direcciones y fechas.
+- **Flexibilidad**: Ofrece una amplia variedad de tipos de datos para diferentes escenarios de prueba.
+- **Automatización de Pruebas**: Facilita la creación de datos dinámicos para pruebas automatizadas.
+
+### Vitest
+
+Framework de pruebas unitarias rápido y ligero para proyectos frontend.
+
+#### Beneficios de Vitest
+
+- **Integración con Vite**: Se integra perfectamente con Vite, aprovechando su velocidad y configuración.
+- **Pruebas Rápidas**: Ofrece tiempos de ejecución rápidos gracias a su enfoque optimizado.
+- **Soporte para Mocking**: Permite simular dependencias para pruebas más controladas.
+
+### React Testing Library
+
+Conjunto de utilidades para probar componentes de React.
+
+#### Beneficios de React Testing Library
+
+- **Enfoque en el Usuario**: Facilita pruebas basadas en cómo los usuarios interactúan con la aplicación.
+- **Selección Accesible**: Permite seleccionar elementos por texto, rol o etiquetas accesibles, fomentando buenas prácticas de accesibilidad.
+- **Simplicidad**: Proporciona una API simple y directa para escribir pruebas claras y legibles.
+
+## Instalación
+
+Sigue estos pasos para instalar y ejecutar la aplicación:
+
+1. Clona el repositorio:
+
+   ```bash
    git clone https://github.com/gondolier22/zara-products-layouts.git
    cd zara-products-layouts
    ```
 
-2. **Install dependencies:**
+2. Instala las dependencias:
 
-   Using npm:
-
-   ```sh
+   ```bash
    npm install
    ```
 
-   Or using yarn:
+3. Ejecuta la aplicación:
 
-   ```sh
-   yarn install
-   ```
-
-3. **Run the application:**
-
-   Using npm:
-
-   ```sh
+   ```bash
    npm run dev
    ```
 
-   Or using yarn:
+La aplicación estará disponible en `http://localhost:5173`.
 
-   ```sh
-   yarn dev
-   ```
+## Contribuciones
 
-4. **Open the application in your browser:**
+Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que desees realizar.
 
-   Navigate to `http://localhost:3000` to view the application.
+## Licencia
 
-## Usage
-
-- **Editor Page:** The main interface for managing product layouts. You can drag and drop product cards to create custom layouts.
-- **File Management Form:** A form for managing file alignments and other properties.
-
-## Contributing
-
-If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Make your changes and commit them with descriptive messages.
-4. Push your changes to your forked repository.
-5. Create a pull request to the main repository.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
