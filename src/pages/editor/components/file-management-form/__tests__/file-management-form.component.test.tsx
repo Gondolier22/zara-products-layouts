@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import FileManagementForm from '../file-management-form.component';
+import { FileManagementForm } from '../file-management-form';
 
 describe('FileManagementForm', () => {
   it('renders the form with the correct elements', () => {

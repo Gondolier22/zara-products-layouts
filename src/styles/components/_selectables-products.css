@@ -1,0 +1,12 @@
+.-c-selectable-products__title {
+  text-align: center;
+}
+
+.-c-selectable-products__container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+}

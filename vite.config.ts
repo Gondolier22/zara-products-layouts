@@ -6,15 +6,22 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    setupFiles: './jest-utils.js',
-    exclude: [
-      '**/node_modules/**',
-      './src/routes.tsx', // Excluir routes.tsx
-      './src/main.tsx', // Excluir main.tsx
-      './src/store/index.ts', // Excluir store/index.ts
-      './src/providers/**/*',
-      './src/models/**/*',
-    ],
+    setupFiles: './jest.setup.ts',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'lcov'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        '**/node_modules/**',
+        'src/routes.tsx', // Excluir routes.tsx
+        'src/main.tsx', // Excluir main.tsx
+        'src/store/editor.ts', // Excluir store/index.ts
+        'src/providers/**/*.{ts,tsx}', // Excluir providers
+        'src/models/**/*.{ts,tsx}', // Excluir models
+        'src/types/**/*.{ts,tsx}', // Excluir types
+      ],
+    },
+
     globals: true,
   },
 });
