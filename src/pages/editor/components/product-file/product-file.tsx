@@ -1,7 +1,8 @@
 import { FC } from 'react';
+
 import { useProductFileController } from './hooks/use-product-file';
-import ProductCard from '../../../../components/product-card/product-card';
-import { ProductFile as ProductFileModel } from '../../../../models/product-file';
+import { ProductCard } from '@/components/product-card/product-card';
+import { ProductFile as ProductFileModel } from '@/models/product-file';
 import { FileManagementForm } from '../file-management-form/file-management-form';
 
 export const ProductFile: FC<ProductFileModel> = ({
@@ -16,6 +17,7 @@ export const ProductFile: FC<ProductFileModel> = ({
     setIsChangingAligment,
     onSubmit,
     deleteProduct,
+    deleteFile,
   } = useProductFileController({
     id,
     aligment,
@@ -25,19 +27,26 @@ export const ProductFile: FC<ProductFileModel> = ({
   return (
     <div
       ref={containerDropRef}
-      className={`-c-products-file`}
+      className={`c-products-file`}
       style={{ opacity }}
     >
+      <button className="c-product-file__delete" onClick={deleteFile}>
+        X
+      </button>
       {isChangingAligment ? (
-        <FileManagementForm btnSubmitText="Save" onSubmit={onSubmit} />
+        <FileManagementForm
+          btnSubmitText="Save"
+          onSubmit={onSubmit}
+          mode="edit"
+        />
       ) : (
-        <div className="-c-products-file__title">
+        <div className="c-products-file__title">
           <p>Aligment: {aligment}</p>
           <button onClick={setIsChangingAligment}>Change aligment</button>
         </div>
       )}
       <div
-        className={`-c-products-file__products -c-products-file__products--${aligment}`}
+        className={`c-products-file__products c-products-file__products--${aligment}`}
       >
         {products?.map((product) => (
           <ProductCard

@@ -1,4 +1,4 @@
-.-c-file-management-form {
+.c-file-management-form {
   display: flex;
   gap: 5px;
   justify-content: center;
@@ -10,13 +10,13 @@
   max-width: 400px;
 }
 
-.-c-file-management-form__label {
+.c-file-management-form__label {
   display: block;
   font-size: 14px;
   color: #333;
 }
 
-.-c-file-management-form__select {
+.c-file-management-form__select {
   width: 100px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -26,7 +26,7 @@
   background-color: #fff;
 }
 
-.-c-file-management-form__button {
+.c-file-management-form__button {
   padding: 10px;
   font-size: 14px;
   color: #fff;
@@ -38,6 +38,12 @@
   text-decoration: none;
 }
 
-.-c-file-management-form__button:hover {
+.c-file-management-form__button:disabled,
+.c-file-management-form__button:disabled:hover {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.c-file-management-form__button:hover {
   background-color: #0056b3;
 }

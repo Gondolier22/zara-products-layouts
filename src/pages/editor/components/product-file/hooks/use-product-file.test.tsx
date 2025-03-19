@@ -1,11 +1,11 @@
 import { renderHook, act } from '@testing-library/react';
 import { useProductFileController } from './use-product-file';
 import { Mock, vi } from 'vitest';
-import { useEditorStore } from '../../../../store/editor';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useEditorStore } from '@/store/editor';
 
-vi.mock('../../../../store/editor', () => ({
+vi.mock('@/store/editor', () => ({
   useEditorStore: vi.fn(),
 }));
 
@@ -15,6 +15,7 @@ describe('useProductFileController', () => {
   const mockUpdateSelectableProducts = vi.fn();
   const mockUpdateFileAligment = vi.fn();
   const mockDeleteProduct = vi.fn();
+  const mockDeleteFile = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -24,6 +25,7 @@ describe('useProductFileController', () => {
       updateSelectableProducts: mockUpdateSelectableProducts,
       updateFileAligment: mockUpdateFileAligment,
       deleteProduct: mockDeleteProduct,
+      deleteFile: mockDeleteFile,
       // Removed incorrect `drop` mock and added proper mocking for `useDrop`
     });
   });

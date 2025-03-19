@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import ZoomControls from '../zoom-controls';
+import { ZoomControls } from '../zoom-controls';
 import { useControls } from 'react-zoom-pan-pinch';
 
 vi.mock('react-zoom-pan-pinch');

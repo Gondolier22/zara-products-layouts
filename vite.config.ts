@@ -1,9 +1,15 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   test: {
     environment: 'jsdom',
     setupFiles: './jest.setup.ts',
@@ -15,7 +21,6 @@ export default defineConfig({
         '**/node_modules/**',
         'src/routes.tsx', // Excluir routes.tsx
         'src/main.tsx', // Excluir main.tsx
-        'src/store/editor.ts', // Excluir store/index.ts
         'src/providers/**/*.{ts,tsx}', // Excluir providers
         'src/models/**/*.{ts,tsx}', // Excluir models
         'src/types/**/*.{ts,tsx}', // Excluir types

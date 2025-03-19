@@ -1,9 +1,10 @@
-import { useDrag, useDrop } from 'react-dnd';
-import { DraggableItems } from '../../../../../types/draggable-items';
 import { useEffect, useRef, useState } from 'react';
-import { useEditorStore } from '../../../../store/editor';
-import { ProductFile } from '../../../../../models/product-file';
-import { Product } from '../../../../../models/product-card';
+import { useDrag, useDrop } from 'react-dnd';
+
+import { Product } from '@/models/product-card';
+import { ProductFile } from '@/models/product-file';
+import { DraggableItems } from '@/types/draggable-items';
+import { useEditorStore } from '@/store/editor';
 
 export const useProductFileController = (data: ProductFile) => {
   const [isChangingAligmentState, setIsChangingAligmentState] = useState(false);
@@ -13,6 +14,7 @@ export const useProductFileController = (data: ProductFile) => {
     updateSelectableProducts,
     updateFileAligment,
     deleteProduct,
+    deleteFile,
   } = useEditorStore();
   const containerDropRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,11 +24,9 @@ export const useProductFileController = (data: ProductFile) => {
       drop: (item: { type: DraggableItems; data: Product | ProductFile }) => {
         if (item.type === DraggableItems.PRODUCT_CARD) {
           if (data.products.length >= 3) return;
-          console.log('Dropped a product card:', item.data);
           addProduct(data.id, item.data as Product);
-          updateSelectableProducts(item.data.id);
+          updateSelectableProducts([item.data.id]);
         } else if (item.type === DraggableItems.PRODUCT_FILE) {
-          console.log('Dropped a product file:', item.data);
           swapFiles(data.id, item.data.id);
         }
       },
@@ -47,6 +47,12 @@ export const useProductFileController = (data: ProductFile) => {
     dragRef(containerDropRef);
   }, [dropRef, dragRef]);
 
+  useEffect(() => {
+    if (data.products.length === 0) {
+      deleteFile(data.id);
+    }
+  }, [data.products, deleteFile, data.id]);
+
   const onSubmit = (aligment: ProductFile['aligment']) => {
     updateFileAligment(data.id, aligment);
     setIsChangingAligmentState(false);
@@ -59,5 +65,6 @@ export const useProductFileController = (data: ProductFile) => {
     setIsChangingAligment: () => setIsChangingAligmentState((prev) => !prev),
     onSubmit,
     deleteProduct,
+    deleteFile: () => deleteFile(data.id),
   };
 };
