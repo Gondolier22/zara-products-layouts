@@ -26,6 +26,7 @@
   - [Instalación](#instalación)
   - [Contribuciones](#contribuciones)
   - [Licencia](#licencia)
+  - [Futuros Pasos](#futuros-pasos)
 
 ## Descripción
 
@@ -174,3 +175,9 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request p
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## Futuros Pasos
+
+- Agregar un botón flotante abajo a la derecha que permita desplazarse rápidamente al final de la página cuando el scroll no esté abajo.
+- Mostrar un modal de advertencia al intentar eliminar el último producto de una fila, indicando que también se eliminará la fila.
+- Implementar un control para que, al hacer drag, el scroll avance automáticamente antes de llegar al final de la página, mejorando la experiencia de usuario.
