@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { faker } from '@faker-js/faker';
-import { Product } from '@/models/product-card';
-import { ProductFile } from '@/models/product-file';
-import { generateFakeProduct } from '@/pages/editor/utils/generate-fake-products';
+import type { Product } from '../models/product-card';
+import type { ProductFile } from '../models/product-file';
+import { generateFakeProduct } from '@/utils/generate-fake-products';
 
 interface SelectableProducts extends Product {
   isChecked: boolean;

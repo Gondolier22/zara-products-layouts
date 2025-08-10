@@ -1,2 +1,2 @@
-@import url('./imports/_elements.css');
-@import url('./imports/_components.css');
+@import url('./_zoom.css');
+@import 'tailwindcss';

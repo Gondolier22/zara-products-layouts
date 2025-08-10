@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
-
 import { Product } from '@/models/product-card';
 import { ProductFile } from '@/models/product-file';
-import { DraggableItems } from '@/types/draggable-items';
 import { useEditorStore } from '@/store/editor';
+import { DraggableItems } from '@/types/draggable-items';
+import { useEffect, useRef, useState } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 
 export const useProductFileController = (data: ProductFile) => {
   const [isChangingAligmentState, setIsChangingAligmentState] = useState(false);
