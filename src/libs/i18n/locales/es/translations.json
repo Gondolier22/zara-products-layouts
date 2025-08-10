@@ -1,0 +1,26 @@
+{
+  "products.layout": {
+    "title": "Gestión de Plantillas de Productos",
+    "description": "Esta aplicación te permite gestionar plantillas de productos, incluyendo la carga, edición y vista previa en filas y posicionamiento.",
+    "selectableProducts": "Productos Seleccionables",
+    "editor": "Editor",
+    "preview": "Vista Previa",
+    "alignment": "Alineación",
+    "alignmentOptions": {
+      "left": "Izquierda",
+      "center": "Centro",
+      "right": "Derecha"
+    },
+    "buttons": {
+      "addFile": "Añadir Archivo",
+      "save": "Guardar",
+      "changeAlignment": "Cambiar Alineación",
+      "delete": "Eliminar"
+    },
+    "zoom": {
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "reset": "Restablecer"
+    }
+  }
+}

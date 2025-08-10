@@ -1,8 +1,8 @@
 import { useDrag, useDrop } from 'react-dnd';
 import { useRef } from 'react';
-import { useEditorStore } from '@/store/editor';
-import { Product } from '@/models/product-card';
-import { DraggableItems } from '@/types/draggable-items';
+import { useEditorStore } from '../../../store/editor';
+import type { Product } from '../../../models/product-card';
+import { DraggableItems } from '../../../types/draggable-items';
 
 export const useProductCardController = (data: Product) => {
   const { swapProducts } = useEditorStore();
